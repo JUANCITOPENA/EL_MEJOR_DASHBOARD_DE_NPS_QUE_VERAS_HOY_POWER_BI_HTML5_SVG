@@ -1,169 +1,554 @@
-# 📊 Panel de Control NPS Interactivo (Web Edition)
+# 🦁 Dashboard Ejecutivo NPS: Banca & Telecomunicaciones (Premium UI)
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-![Status](https://img.shields.io/badge/status-stable-success)
-![Technology](https://img.shields.io/badge/tech-HTML5%20%7C%20CSS3%20%7C%20JS-orange)
-
-> **Una experiencia visual intuitiva y de alto rendimiento para el análisis de NPS (Net Promoter Score), desarrollada desde cero con tecnologías web estándar.**
+> **Versión:** 2.0 (High Performance Edition)  
+> **Tecnología:** Power BI + DAX + HTML5/SVG + Python  
+> **Enfoque:** Visualización de Datos Avanzada (Custom Visuals via DAX)  
+> **Estado:** 🟢 Producción
 
 ---
 
-## 📑 Tabla de Contenidos
+## 📖 1. Narrativa y Contexto del Negocio
 
-1. [📖 Introducción](#-introducción)
-2. [✨ Características Principales](#-características-principales)
-3. [🛠️ Tecnologías Utilizadas](#-tecnologías-utilizadas)
-4. [📋 Prerrequisitos](#-prerrequisitos)
-5. [🚀 Instalación y Despliegue](#-instalación-y-despliegue)
-6. [💻 Estructura del Proyecto](#-estructura-del-proyecto)
-7. [🎨 Diseño y UX](#-diseño-y-ux)
-8. [🤝 Contribución](#-contribución)
-9. [👏 Créditos y Agradecimientos](#-créditos-y-agradecimientos)
-10. [📄 Licencia](#-licencia)
+### 🏦 El Escenario
+**"Banca Claro RD"** es una institución líder que busca monitorear la satisfacción de sus clientes (NPS) en tiempo real. La alta dirección requiere un tablero que no solo muestre números, sino que **transmita el éxito y la excelencia** de la gestión actual.
 
----
+### 🚩 El Problema (Pain Point)
+Los visuales nativos de Power BI (tacómetros estándar, gráficos de barras simples) eran insuficientes para:
+1.  **Impacto Visual:** Se veían "planos" y poco corporativos.
+2.  **Flexibilidad:** No permitían zonas de colores personalizadas ni iconos dinámicos.
+3.  **Narrativa:** No contaban la historia de la demografía del cliente de un vistazo.
 
-## 📖 Introducción
-
-Este proyecto nace con la misión de transformar datos fríos en una narrativa visual atractiva. A diferencia de los paneles tradicionales limitados por software de BI (Business Intelligence), esta solución es una **Web App Standalone** que ofrece libertad total en diseño y performance.
-
-El objetivo fue replicar y superar la experiencia de un dashboard ejecutivo, implementando lógicas de **ETL (simulado en JS)** y visualización de datos avanzada utilizando únicamente estándares web modernos.
+### 🚀 La Solución
+Se desarrolló una arquitectura híbrida donde **Power BI procesa los datos** y **DAX genera código HTML/SVG dinámico**. Esto permite crear tarjetas visuales de "calidad web" (pixel-perfect) que reaccionan a los filtros, mostrando una interfaz limpia, moderna y altamente estética.
 
 ---
 
-## ✨ Características Principales
+## 🛠️ 2. Arquitectura de Datos (Backend)
 
-*   **⚡ Alto Rendimiento:** Carga instantánea y transiciones fluidas sin la sobrecarga de motores de BI pesados.
-*   **🏎️ Infografía de Velocímetro:** Visualización SVG dinámica que reacciona a los KPIs del NPS en tiempo real.
-*   **🗺️ Mapa Interactivo:** Gráficos vectoriales que permiten el desglose geográfico de la satisfacción del cliente.
-*   **👤 Perfil de Cliente Dinámico:** Tooltips y descripciones personalizadas que cambian según la selección de datos.
-*   **🎨 Background Figma-Designed:** Una interfaz de usuario pulida con fondos y activos exportados directamente desde diseños de alta fidelidad.
+Para simular un escenario real y garantizar que los KPIs reflejen una gestión exitosa, se generó un **Dataset Sintético Calibrado** utilizando Python.
+
+### 🐍 Generación de Datos (Python Script)
+Se creó una base de datos `nps_dataset_rd_banca_claro` con **5,000 registros** y las siguientes características:
+
+*   **Periodo:** 3 años de histórico.
+*   **Cobertura:** Nacional (Regiones Ozama, Cibao, Sur, Este).
+*   **Segmentación:** Sexo, Rango de Edad (calculado dinámicamente), Plan, Gerente.
+*   **Calibración Positiva (The "Winner" Logic):**
+    *   🟩 **Promotores (9-10):** ~78% (Mayoría absoluta).
+    *   🟨 **Neutros (7-8):** ~8% (Minimizado).
+    *   🟥 **Detractores (0-6):** ~14% (Controlado).
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🧠 3. Lógica de Negocio y KPIs (DAX)
 
-Este proyecto no utiliza frameworks pesados, garantizando la máxima compatibilidad y facilidad de replicación.
+Las medidas no son simples sumas; contienen lógica de negocio para determinar el "Color del Éxito".
 
-| Tecnología | Rol | Icono |
+### 📊 Indicadores Clave (KPIs)
+
+| Indicador | Definición | Meta / Regla de Negocio |
 | :--- | :--- | :--- |
-| **HTML5** | Estructura semántica y accesibilidad | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="20" height="20"/> |
-| **CSS3** | Estilos, Grid/Flexbox y Animaciones | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="20" height="20"/> |
-| **JavaScript (ES6+)** | Lógica de negocio, manipulación del DOM y cálculos de NPS | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="20" height="20"/> |
-| **Figma** | Prototipado y diseño de assets gráficos | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg" width="20" height="20"/> |
-| **SVG** | Gráficos vectoriales escalables para métricas nítidas | 📐 |
+| **NPS Score** | `(Promotores % - Detractores %) * 100` | > 50 (Excelente) |
+| **% Promotores** | `Total Promotores / Total Respuestas` | **Si es > 70%, se fuerza el ESTADO VERDE.** |
+| **Zona de Clasificación** | Texto dinámico según el Score | Excelencia, Calidad, Mejora, Crítica. |
 
 ---
 
-## 📋 Prerrequisitos
+## 🎨 4. Visualización Avanzada (Frontend)
 
-Para ejecutar o editar este proyecto, necesitas:
+El corazón del reporte son dos medidas DAX complejas que renderizan HTML5 puro dentro de Power BI usando el visual "HTML Content".
 
-1.  **Navegador Web Moderno:** Chrome, Edge, Firefox o Safari (versiones recientes).
-2.  **Editor de Código (Opcional):** Se recomienda [Visual Studio Code](https://code.visualstudio.com/) para explorar el código.
-3.  **Git (Opcional):** Para clonar el repositorio.
+### 1️⃣ Tarjeta NPS (Velocímetro SVG)
+Un componente visual complejo diseñado a medida que incluye:
+
+*   **Gauge Semicircular (SVG):** Dibuja un arco de 180° dinámico y nítido.
+*   **Aguja Rotatoria:** Calcula el ángulo exacto basado en el NPS (Escala de -100 a 100).
+    *   *Fórmula de rotación:* `INT(MAX(0, MIN(180, (_NPS + 100) * 0.9)))`
+*   **Indicadores de Segmento:** Barras de progreso inferiores con iconos vectoriales (SVG path) que cambian de color según el segmento.
+*   **Clean UI:** Se eliminaron botones innecesarios para ofrecer una vista ejecutiva limpia.
+
+### 2️⃣ Tarjeta Perfil del Cliente (Demografía)
+Un panel informativo que desglosa quién está respondiendo la encuesta:
+
+*   **Iconos de Género:** Vectores SVG que cambian dinámicamente según el sexo predominante.
+*   **Barras Apiladas (CSS Grid):**
+    *   Muestra la distribución de edad (18-29, 30-39, etc.).
+    *   Utiliza barras bicolores (Rosa/Azul Oscuro) dentro del mismo contenedor visual.
+*   **Técnica Web:** Uso de `width: %` en divs HTML calculados via DAX.
+*   **Corrección de Error:** Se usa la columna numérica `[Idade]` para calcular los rangos "al vuelo", evitando errores de dependencias circulares.
 
 ---
 
-## 🚀 Instalación y Despliegue
+## 🚦 5. Zonas de Gestión (Semáforo)
 
-Sigue estos pasos para tener el proyecto corriendo en tu máquina local en menos de 2 minutos.
+El dashboard clasifica automáticamente el desempeño del Gerente o Región en 4 zonas de actuación:
 
-### Paso 1: Clonar u Obtener el Proyecto
+*   🏆 **Zona de Excelencia:** NPS > 75 **o** Promotores > 70%. *(Color: Verde Neón / #00E676)*.
+*   ✅ **Zona de Calidad:** NPS entre 50 y 75. *(Color: Verde Medio / #00E676)*.
+*   ⚠️ **Zona de Mejora:** NPS positivo pero bajo (< 50). *(Color: Amarillo-Dorado / #F4B400)*.
+*   ⛔ **Zona Crítica:** NPS Negativo. *(Color: Rojo-Rosa / #E91E63)*.
 
-Si tienes Git instalado, abre tu terminal y ejecuta:
+---
 
-```bash
-git clone https://github.com/tu-usuario/nps-dashboard-web.git
-cd nps-dashboard-web
+## 📦 6. Instalación y Uso
+
+### Pasos para desplegar:
+1.  **Fuente de Datos:** Cargar el archivo generado `nps_dataset_rd_banca_claro.xlsx`.
+2.  **Custom Visual:** Importar el visual **"HTML Content"** (de Daniel Marsh-Patrick) desde AppSource.
+3.  **Medidas Base:** Crear todas las medidas detalladas en la Sección 7.
+4.  **Visuales Avanzados:**
+    *   Arrastrar la medida `[HTML_NPS_Card]` al lienzo para ver el velocímetro.
+    *   Arrastrar la medida `[HTML_Perfil_Premium]` al lienzo para ver la demografía.
+5.  **Interacción:** Al filtrar por *Gerente*, *Año* o *Región*, ambos visuales recalculan sus vectores y colores instantáneamente.
+
+---
+
+## 💻 7. Repositorio de Medidas DAX (Código Fuente)
+
+### 📌 7.1 Columnas Calculadas
+> **Importante:** Crear como "Nueva Columna" en la tabla `nps_dataset_rd_banca_claro`.
+
+```dax
+Rango_Edad = 
+SWITCH( TRUE(),
+    'nps_dataset_rd_banca_claro'[Idade] <= 24, "18-24",
+    'nps_dataset_rd_banca_claro'[Idade] <= 34, "25-34",
+    'nps_dataset_rd_banca_claro'[Idade] <= 44, "35-44",
+    'nps_dataset_rd_banca_claro'[Idade] <= 54, "45-54",
+    'nps_dataset_rd_banca_claro'[Idade] <= 64, "55-64",
+    "65+"
+)
 ```
 
-*Si descargaste el archivo ZIP, simplemente extrae el contenido en una carpeta de tu preferencia.*
+### 📌 7.2 Medidas Base (Totales)
 
-### Paso 2: Ejecución
+```dax
+Total Respuestas = 
+COUNTROWS ( nps_dataset_rd_banca_claro )
 
-Al ser un proyecto estático (Client-Side), no requieres instalar Node.js ni configurar servidores complejos.
+Total Promotores = 
+CALCULATE (
+    COUNTROWS ( nps_dataset_rd_banca_claro ),
+    nps_dataset_rd_banca_claro[NPS_Score] >= 9
+)
 
-**Opción A (Doble Clic):**
-1.  Navega a la carpeta del proyecto.
-2.  Haz doble clic en el archivo `index.html`.
-3.  El dashboard se abrirá en tu navegador predeterminado.
+Total Neutros = 
+CALCULATE (
+    COUNTROWS ( nps_dataset_rd_banca_claro ),
+    nps_dataset_rd_banca_claro[NPS_Score] >= 7,
+    nps_dataset_rd_banca_claro[NPS_Score] <= 8
+)
 
-**Opción B (VS Code Live Server - Recomendado):**
-1.  Abre la carpeta en VS Code.
-2.  Instala la extensión "Live Server".
-3.  Haz clic derecho en `index.html` y selecciona **"Open with Live Server"**.
+Total Detractores = 
+CALCULATE (
+    COUNTROWS ( nps_dataset_rd_banca_claro ),
+    nps_dataset_rd_banca_claro[NPS_Score] <= 6
+)
+```
 
----
+### 📌 7.3 KPIs y Lógica de Negocio
 
-## 💻 Estructura del Proyecto
+```dax
+NPS Score = 
+VAR P = [Total Promotores]
+VAR D = [Total Detractores]
+VAR T = [Total Respuestas]
+RETURN
+IF ( T = 0, BLANK(), DIVIDE ( P - D, T ) * 100 )
 
-La organización de archivos sigue las mejores prácticas para facilitar el mantenimiento:
+Pct Promotores = FORMAT ( DIVIDE ( [Total Promotores], [Total Respuestas] ), "0.0%" )
+Pct Neutros = FORMAT ( DIVIDE ( [Total Neutros], [Total Respuestas] ), "0.0%" )
+Pct Detractores = FORMAT ( DIVIDE ( [Total Detractores], [Total Respuestas] ), "0.0%" )
+```
 
-```text
-nps-dashboard/
-│
-├── 📂 assets/              # Recursos estáticos
-│   ├── 📂 images/          # Fondos de Figma e iconos rasterizados
-│   └── 📂 svgs/            # Gráficos vectoriales (Velocímetro, Mapa)
-│
-├── 📂 css/                 # Hojas de estilo
-│   ├── style.css           # Estilos principales y reset
-│   └── responsive.css      # Media queries para adaptabilidad
-│
-├── 📂 js/                  # Lógica del cliente
-│   ├── data.js             # Datos simulados (JSON structure)
-│   ├── main.js             # Lógica principal de renderizado
-│   └── charts.js           # Lógica específica para gráficos SVG
-│
-├── index.html              # Punto de entrada de la aplicación
-├── README.md               # Documentación del proyecto
-└── LICENSE                 # Licencia de uso
+### 🔹 7.4 Visual Avanzado: Tarjeta NPS (HTML_NPS_Card)
+*Renderiza el velocímetro, la aguja dinámica y los KPIs inferiores.*
+
+```dax
+HTML_NPS_Card = 
+-- 1. CÁLCULOS DE BASE
+VAR _Total = COUNTROWS('nps_dataset_rd_banca_claro')
+VAR _Promotores = CALCULATE(COUNTROWS('nps_dataset_rd_banca_claro'), 'nps_dataset_rd_banca_claro'[Clasificacion] = "Promotor")
+VAR _Neutros = CALCULATE(COUNTROWS('nps_dataset_rd_banca_claro'), 'nps_dataset_rd_banca_claro'[Clasificacion] = "Neutro")
+VAR _Detractores = CALCULATE(COUNTROWS('nps_dataset_rd_banca_claro'), 'nps_dataset_rd_banca_claro'[Clasificacion] = "Detractor")
+
+-- Cálculo NPS Score
+VAR _NPS_Raw = IF(_Total > 0, DIVIDE(_Promotores - _Detractores, _Total) * 100, 0)
+
+-- 2. REGLA ESPECIAL DEL 70% PROMOTORES
+VAR _PctProm_Num = DIVIDE(_Promotores, _Total, 0)
+VAR _EsTopPerformance = _PctProm_Num >= 0.70
+
+-- 3. LÓGICA DE COLOR Y TEXTO
+VAR _Color = 
+    SWITCH(TRUE(),
+        _EsTopPerformance, "#00E676",  -- ¡FORZAR VERDE!
+        _NPS_Raw >= 75, "#00E676",
+        _NPS_Raw >= 50, "#00E676",
+        _NPS_Raw >= 0,  "#F4B400",
+        "#E91E63"
+    )
+
+VAR _TextoZona = 
+    SWITCH(TRUE(),
+        _EsTopPerformance, "Zona de Excelencia",
+        _NPS_Raw >= 75, "Zona de Excelencia",
+        _NPS_Raw >= 50, "Zona de Calidad",
+        _NPS_Raw >= 0,  "Zona de Mejora",
+        "Zona Crítica"
+    )
+
+-- 4. ÁNGULO DEL GAUGE
+VAR _Angulo = INT(MAX(0, MIN(180, DIVIDE(_NPS_Raw + 100, 200) * 180)))
+
+-- 5. FORMATOS
+VAR _PctProm_Txt = FORMAT(DIVIDE(_Promotores, _Total), "0%")
+VAR _PctNeu_Txt = FORMAT(DIVIDE(_Neutros, _Total), "0%")
+VAR _PctDet_Txt = FORMAT(DIVIDE(_Detractores, _Total), "0%")
+
+-- 6. ICONOS DINÁMICOS POR SEXO
+VAR _SexoSel = SELECTEDVALUE('nps_dataset_rd_banca_claro'[Sexo], "Todos")
+VAR _IconPath = 
+    SWITCH(_SexoSel,
+        "Femenino", "M12,4A2,2 0 0,1 14,6C14,7.1 13.1,8 12,8A2,2 0 0,1 10,6C10,4.9 10.9,4 12,4M17,12V10H7V12H9V21H11V14H13V21H15V12H17Z",
+        "Masculino", "M9,14H15V21H13V16H11V21H9V14M12,12C14.21,12 16,10.21 16,8C16,5.79 14.21,4 12,4C9.79,4 8,5.79 8,8C8,10.21 9.79,12 12,12M18,14V10H6V14H8V24H16V14H18Z",
+        "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+    )
+
+RETURN
+"
+<div style='font-family: Segoe UI, sans-serif; background: white; padding: 20px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; height: 100%; box-sizing: border-box; position: relative;'>
+
+    <div style='display: flex; justify-content: center; align-items: center; margin-bottom: 5px;'>
+        <div style='text-align: center;'>
+            <div style='color: #333; font-size: 16px; font-weight: 600;'>Zona de Classificação (NPS)</div>
+            <div style='font-size: 14px; font-weight: bold; color: #ccc; margin-top: 2px;'>00</div>
+        </div>
+    </div>
+
+    <div style='position: relative; height: 160px; margin: 10px auto; width: 260px;'>
+        <svg viewBox='0 0 240 140' style='width: 100%; overflow: visible;'>
+            <path d='M 20 120 A 100 100 0 0 1 220 120' fill='none' stroke='#E0E0E0' stroke-width='15' stroke-dasharray='2 5'></path>
+            <path d='M 35 120 A 85 85 0 0 1 205 120' fill='none' stroke='" & _Color & "' stroke-width='3'></path>
+            <g transform='rotate(" & _Angulo & " 120 120)'>
+                 <polygon points='35,120 50,114 50,126' fill='" & _Color & "' transform='rotate(180 42 120)'></polygon>
+            </g>
+            <text x='15' y='110' font-size='12' fill='#555' font-weight='bold' text-anchor='middle'>-100</text>
+            <text x='225' y='110' font-size='12' fill='#555' font-weight='bold' text-anchor='middle'>100</text>
+            <text x='188' y='55' font-size='10' fill='#999' font-weight='bold'>50</text>
+            <text x='208' y='85' font-size='10' fill='#999' font-weight='bold'>75</text>
+        </svg>
+
+        <div style='position: absolute; top: 75%; left: 50%; transform: translate(-50%, -50%); text-align: center;'>
+            <div style='font-size: 56px; font-weight: bold; color: " & _Color & "; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.1);'>" & FORMAT(_NPS_Raw, "0") & "</div>
+            <div style='font-size: 16px; font-weight: 700; color: #444; margin-top: 5px; white-space: nowrap;'>" & _TextoZona & "</div>
+            <div style='font-size: 13px; color: #999; font-weight: 600;'>NPS</div>
+        </div>
+    </div>
+
+    <div style='text-align: center; margin-top: 5px;'>
+        <div style='font-size: 36px; font-weight: 800; color: #2C3E50;'>" & FORMAT(_Total, "#,##0") & "</div>
+        <div style='font-size: 14px; color: #7f8c8d; font-weight: 600;'>Qtde respuestas</div>
+    </div>
+
+    <div style='width: 80%; height: 10px; border-top: 2px solid #2C3E50; border-radius: 50% 50% 0 0; margin: 10px auto 20px auto; opacity: 0.1;'></div>
+
+    <div style='display: flex; justify-content: space-between; padding: 0 10px;'>
+        <div style='flex: 1; text-align: center;'>
+            <div style='font-size: 16px; font-weight: 800; color: #333; margin-bottom: 5px;'>" & _PctDet_Txt & "</div>
+            <div style='height: 40px; display: flex; justify-content: center; align-items: end;'>
+                 <svg width='40' height='35' viewBox='0 0 24 24' fill='#E91E63' style='filter: drop-shadow(0 4px 6px rgba(233,30,99,0.4));'>
+                    <path d='" & _IconPath & "' transform='scale(1.1)'/>
+                 </svg>
+            </div>
+            <div style='font-size: 20px; font-weight: 800; color: #333; margin-top: 5px;'>" & FORMAT(_Detractores, "#,##0") & "</div>
+            <div style='font-size: 11px; color: #777; font-weight: 600;'>Detratores</div>
+            <div style='height: 4px; width: 30px; background: #E91E63; margin: 5px auto; border-radius: 2px;'></div>
+        </div>
+
+        <div style='flex: 1; text-align: center;'>
+            <div style='font-size: 16px; font-weight: 800; color: #333; margin-bottom: 5px;'>" & _PctNeu_Txt & "</div>
+             <div style='height: 40px; display: flex; justify-content: center; align-items: end;'>
+                 <svg width='40' height='35' viewBox='0 0 24 24' fill='#F4B400' style='filter: drop-shadow(0 4px 6px rgba(244,180,0,0.4));'>
+                    <path d='" & _IconPath & "' transform='scale(1.1)'/>
+                 </svg>
+            </div>
+            <div style='font-size: 20px; font-weight: 800; color: #333; margin-top: 5px;'>" & FORMAT(_Neutros, "#,##0") & "</div>
+            <div style='font-size: 11px; color: #777; font-weight: 600;'>Neutros</div>
+            <div style='height: 4px; width: 30px; background: #F4B400; margin: 5px auto; border-radius: 2px;'></div>
+        </div>
+
+        <div style='flex: 1; text-align: center;'>
+            <div style='font-size: 16px; font-weight: 800; color: #333; margin-bottom: 5px;'>" & _PctProm_Txt & "</div>
+             <div style='height: 40px; display: flex; justify-content: center; align-items: end;'>
+                 <svg width='40' height='35' viewBox='0 0 24 24' fill='#00E676' style='filter: drop-shadow(0 4px 6px rgba(0,230,118,0.4));'>
+                    <path d='" & _IconPath & "' transform='scale(1.1)'/>
+                 </svg>
+            </div>
+            <div style='font-size: 20px; font-weight: 800; color: #333; margin-top: 5px;'>" & FORMAT(_Promotores, "#,##0") & "</div>
+            <div style='font-size: 11px; color: #777; font-weight: 600;'>Promotores</div>
+            <div style='height: 4px; width: 30px; background: #00E676; margin: 5px auto; border-radius: 2px;'></div>
+        </div>
+    </div>
+</div>
+"
+```
+
+### 🔹 7.5 Visual Avanzado: Perfil Demográfico (HTML_Perfil_Premium)
+*Renderiza las barras de progreso por edad y los iconos de género.*
+
+```dax
+HTML_Perfil_Premium = 
+VAR _Total = COUNTROWS(nps_dataset_rd_banca_claro)
+VAR _Masc = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Sexo] = "Masculino") + 0
+VAR _Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _PctMascTxt = FORMAT(DIVIDE(_Masc, _Total), "0%")
+VAR _PctFemTxt = FORMAT(DIVIDE(_Fem, _Total), "0%")
+VAR _ColorMasc = "#0F1626"
+VAR _ColorFem = "#E91E63"
+
+-- CÁLCULOS DE GRUPOS (USANDO 'Idade')
+VAR _R1_Tot = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 18, nps_dataset_rd_banca_claro[Idade] <= 29) + 0
+VAR _R1_Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 18, nps_dataset_rd_banca_claro[Idade] <= 29, nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _R1_Masc = _R1_Tot - _R1_Fem
+
+VAR _R2_Tot = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 30, nps_dataset_rd_banca_claro[Idade] <= 39) + 0
+VAR _R2_Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 30, nps_dataset_rd_banca_claro[Idade] <= 39, nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _R2_Masc = _R2_Tot - _R2_Fem
+
+VAR _R3_Tot = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 40, nps_dataset_rd_banca_claro[Idade] <= 49) + 0
+VAR _R3_Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 40, nps_dataset_rd_banca_claro[Idade] <= 49, nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _R3_Masc = _R3_Tot - _R3_Fem
+
+VAR _R4_Tot = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 50, nps_dataset_rd_banca_claro[Idade] <= 59) + 0
+VAR _R4_Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 50, nps_dataset_rd_banca_claro[Idade] <= 59, nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _R4_Masc = _R4_Tot - _R4_Fem
+
+VAR _R5_Tot = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 60) + 0
+VAR _R5_Fem = CALCULATE(COUNTROWS(nps_dataset_rd_banca_claro), nps_dataset_rd_banca_claro[Idade] >= 60, nps_dataset_rd_banca_claro[Sexo] = "Femenino") + 0
+VAR _R5_Masc = _R5_Tot - _R5_Fem
+
+-- ESCALA MÁXIMA
+VAR _MaxVal = MAXX({_R1_Tot, _R2_Tot, _R3_Tot, _R4_Tot, _R5_Tot}, [Value])
+VAR _Denom = IF(_MaxVal = 0, 1, _MaxVal) * 1.2
+
+-- CÁLCULO DE ANCHOS (%)
+VAR _W_R1_F = INT(DIVIDE(_R1_Fem, _Denom, 0) * 100)
+VAR _W_R1_M = INT(DIVIDE(_R1_Masc, _Denom, 0) * 100)
+VAR _W_R2_F = INT(DIVIDE(_R2_Fem, _Denom, 0) * 100)
+VAR _W_R2_M = INT(DIVIDE(_R2_Masc, _Denom, 0) * 100)
+VAR _W_R3_F = INT(DIVIDE(_R3_Fem, _Denom, 0) * 100)
+VAR _W_R3_M = INT(DIVIDE(_R3_Masc, _Denom, 0) * 100)
+VAR _W_R4_F = INT(DIVIDE(_R4_Fem, _Denom, 0) * 100)
+VAR _W_R4_M = INT(DIVIDE(_R4_Masc, _Denom, 0) * 100)
+VAR _W_R5_F = INT(DIVIDE(_R5_Fem, _Denom, 0) * 100)
+VAR _W_R5_M = INT(DIVIDE(_R5_Masc, _Denom, 0) * 100)
+
+RETURN
+"
+<div style='font-family: Segoe UI, sans-serif; background: #EFEFEF; padding: 15px; border-radius: 15px; display: flex; width: 100%; height: 100%; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow:hidden;'>
+    <div style='flex: 1; background: #fff; border-radius: 15px; padding: 10px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-width: 180px;'>
+        <div style='text-align: center; font-weight: bold; color: #1A237E; margin-bottom: 15px; font-size: 14px;'>Qtde de Resposta por Sexo</div>
+        <div style='display: flex; align-items: center; margin-bottom: 20px;'>
+            <svg width='50' height='50' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z' fill='" & _ColorMasc & "'/></svg>
+            <div style='margin-left: 10px;'>
+                <div style='font-size: 22px; font-weight: 800; color: #333;'>" & _PctMascTxt & "</div>
+                <div style='font-size: 11px; font-weight: bold; color: #333;'>Clientes: " & _Masc & "</div>
+            </div>
+        </div>
+        <div style='display: flex; align-items: center;'>
+             <svg width='50' height='50' viewBox='0 0 24 24'>
+                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z' fill='" & _ColorFem & "'/>
+                <path d='M12 8.5c-1.5 0-2.8.8-3.5 2 .5 2 2 3.5 3.5 3.5s3-1.5 3.5-3.5c-.7-1.2-2-2-3.5-2z' fill='#fff' opacity='0.3'/> 
+            </svg>
+            <div style='margin-left: 10px;'>
+                <div style='font-size: 22px; font-weight: 800; color: #333;'>" & _PctFemTxt & "</div>
+                <div style='font-size: 11px; font-weight: bold; color: #333;'>Clientes: " & _Fem & "</div>
+            </div>
+        </div>
+    </div>
+    <div style='flex: 1.5; background: #fff; border-radius: 15px; padding: 15px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);'>
+        <div style='text-align: center; font-weight: bold; color: #1A237E; margin-bottom: 15px; font-size: 13px;'>Qtde Respostas por Range Idade e Sexo</div>
+        
+        <!-- RANGO 1 -->
+        <div style='display: flex; align-items: center; margin-bottom: 10px;'>
+            <div style='width: 45px; text-align: right; font-size: 11px; color: #666; margin-right: 8px;'>18 a 29</div>
+            <div style='flex: 1; display: flex; background: #f0f0f0; border-radius: 4px; overflow: hidden;'>
+                <div style='height: 22px; width: " & _W_R1_F & "%; background: " & _ColorFem & ";'></div>
+                <div style='height: 22px; width: " & _W_R1_M & "%; background: " & _ColorMasc & ";'></div>
+            </div>
+            <div style='width: 30px; margin-left: 8px; font-weight: bold; color: #333; font-size: 11px;'>" & _R1_Tot & "</div>
+        </div>
+
+        <!-- RANGO 2 -->
+        <div style='display: flex; align-items: center; margin-bottom: 10px;'>
+            <div style='width: 45px; text-align: right; font-size: 11px; color: #666; margin-right: 8px;'>30 a 39</div>
+            <div style='flex: 1; display: flex; background: #f0f0f0; border-radius: 4px; overflow: hidden;'>
+                <div style='height: 22px; width: " & _W_R2_F & "%; background: " & _ColorFem & ";'></div>
+                <div style='height: 22px; width: " & _W_R2_M & "%; background: " & _ColorMasc & ";'></div>
+            </div>
+            <div style='width: 30px; margin-left: 8px; font-weight: bold; color: #333; font-size: 11px;'>" & _R2_Tot & "</div>
+        </div>
+
+        <!-- RANGO 3 -->
+        <div style='display: flex; align-items: center; margin-bottom: 10px;'>
+            <div style='width: 45px; text-align: right; font-size: 11px; color: #666; margin-right: 8px;'>40 a 49</div>
+            <div style='flex: 1; display: flex; background: #f0f0f0; border-radius: 4px; overflow: hidden;'>
+                <div style='height: 22px; width: " & _W_R3_F & "%; background: " & _ColorFem & ";'></div>
+                <div style='height: 22px; width: " & _W_R3_M & "%; background: " & _ColorMasc & ";'></div>
+            </div>
+            <div style='width: 30px; margin-left: 8px; font-weight: bold; color: #333; font-size: 11px;'>" & _R3_Tot & "</div>
+        </div>
+
+        <!-- RANGO 4 -->
+        <div style='display: flex; align-items: center; margin-bottom: 10px;'>
+            <div style='width: 45px; text-align: right; font-size: 11px; color: #666; margin-right: 8px;'>50 a 59</div>
+            <div style='flex: 1; display: flex; background: #f0f0f0; border-radius: 4px; overflow: hidden;'>
+                <div style='height: 22px; width: " & _W_R4_F & "%; background: " & _ColorFem & ";'></div>
+                <div style='height: 22px; width: " & _W_R4_M & "%; background: " & _ColorMasc & ";'></div>
+            </div>
+            <div style='width: 30px; margin-left: 8px; font-weight: bold; color: #333; font-size: 11px;'>" & _R4_Tot & "</div>
+        </div>
+
+        <!-- RANGO 5 -->
+        <div style='display: flex; align-items: center;'>
+            <div style='width: 45px; text-align: right; font-size: 11px; color: #666; margin-right: 8px;'>acima 59</div>
+            <div style='flex: 1; display: flex; background: #f0f0f0; border-radius: 4px; overflow: hidden;'>
+                <div style='height: 22px; width: " & _W_R5_F & "%; background: " & _ColorFem & ";'></div>
+                <div style='height: 22px; width: " & _W_R5_M & "%; background: " & _ColorMasc & ";'></div>
+            </div>
+            <div style='width: 30px; margin-left: 8px; font-weight: bold; color: #333; font-size: 11px;'>" & _R5_Tot & "</div>
+        </div>
+    </div>
+</div>
+"
 ```
 
 ---
 
-## 🎨 Diseño y UX
+## 🐍 8. Script Python: Generador de Datos Calibrado
 
-El diseño visual fue concebido en **Figma** antes de escribir una sola línea de código.
+Utiliza este script para generar el archivo `nps_dataset_rd_banca_claro.xlsx`.
 
-1.  **Fondo y Contenedores:** Se exportaron como SVGs/PNGs para mantener la fidelidad visual.
-2.  **Interactividad:**
-    *   *Hover Effects:* Al pasar el mouse sobre las regiones del mapa.
-    *   *Data Binding:* Al hacer clic en un segmento del velocímetro, la información del perfil del cliente se actualiza automáticamente.
+```python
+import pandas as pd
+import numpy as np
+import random
+from datetime import datetime, timedelta
 
----
+# --- CONFIGURACIÓN ---
+num_records_random = 5000 
 
-## 🤝 Contribución
+gerentes = [
+    'Juliana Gómez', 'Claudia Méndez', 'William Paredes', 'Angela Torres',
+    'Gilmar Rodríguez', 'Sandro Valdez', 'Marcos Batista',
+    'Patricia Núñez', 'Esteban Jiménez', 'Verónica López'
+]
 
-¡Las contribuciones son bienvenidas! Si deseas mejorar el código o añadir nuevas visualizaciones:
+planos = ['Prepago', 'Postpago', 'Empresarial', 'Premium']
+lista_sexos = ['Masculino', 'Femenino']
 
-1.  Haz un **Fork** del proyecto.
-2.  Crea una nueva rama (`git checkout -b feature/NuevaFuncionalidad`).
-3.  Realiza tus cambios y haz **Commit** (`git commit -m 'Agrega nueva gráfica'`).
-4.  Haz **Push** a la rama (`git push origin feature/NuevaFuncionalidad`).
-5.  Abre un **Pull Request**.
+temas_clientes = [
+    'Apertura de cuenta bancaria',
+    'Préstamo personal aprobado',
+    'Tarjeta de crédito',
+    'Reclamo resuelto satisfactoriamente',
+    'Migración a plan Claro Postpago',
+    'Instalación de fibra óptica Claro',
+    'Renovación de contrato',
+    'Mejora de señal móvil',
+    'Actualización de datos',
+    'Solicitud empresarial',
+    'Atención VIP',
+    'Consulta de balance',
+    'Pago electrónico exitoso'
+]
 
----
+# --- GEOGRAFÍA REPÚBLICA DOMINICANA ---
+dr_locations = [
+    {'Region': 'Ozama', 'Provincia': 'Distrito Nacional', 'Ciudad': 'Santo Domingo de Guzmán', 'Weight': 0.18},
+    {'Region': 'Ozama', 'Provincia': 'Santo Domingo', 'Ciudad': 'Santo Domingo Este', 'Weight': 0.10},
+    {'Region': 'Ozama', 'Provincia': 'Santo Domingo', 'Ciudad': 'Santo Domingo Norte', 'Weight': 0.08},
+    {'Region': 'Ozama', 'Provincia': 'Santo Domingo', 'Ciudad': 'Santo Domingo Oeste', 'Weight': 0.06},
+    {'Region': 'Norte', 'Provincia': 'Santiago', 'Ciudad': 'Santiago de los Caballeros', 'Weight': 0.12},
+    {'Region': 'Norte', 'Provincia': 'La Vega', 'Ciudad': 'La Vega', 'Weight': 0.05},
+    {'Region': 'Norte', 'Provincia': 'Duarte', 'Ciudad': 'San Francisco de Macorís', 'Weight': 0.05},
+    {'Region': 'Norte', 'Provincia': 'Puerto Plata', 'Ciudad': 'Puerto Plata', 'Weight': 0.04},
+    {'Region': 'Norte', 'Provincia': 'Espaillat', 'Ciudad': 'Moca', 'Weight': 0.03},
+    {'Region': 'Este', 'Provincia': 'La Altagracia', 'Ciudad': 'Higüey', 'Weight': 0.05},
+    {'Region': 'Este', 'Provincia': 'La Altagracia', 'Ciudad': 'Punta Cana', 'Weight': 0.07},
+    {'Region': 'Este', 'Provincia': 'La Romana', 'Ciudad': 'La Romana', 'Weight': 0.04},
+    {'Region': 'Este', 'Provincia': 'San Pedro de Macorís', 'Ciudad': 'San Pedro de Macorís', 'Weight': 0.04},
+    {'Region': 'Sur', 'Provincia': 'San Cristóbal', 'Ciudad': 'San Cristóbal', 'Weight': 0.05},
+    {'Region': 'Sur', 'Provincia': 'Peravia', 'Ciudad': 'Baní', 'Weight': 0.03},
+    {'Region': 'Sur', 'Provincia': 'Barahona', 'Ciudad': 'Barahona', 'Weight': 0.03},
+    {'Region': 'Sur', 'Provincia': 'Azua', 'Ciudad': 'Azua', 'Weight': 0.03}
+]
 
-## 👏 Créditos y Agradecimientos
+loc_weights = [l['Weight'] for l in dr_locations]
 
-Este proyecto fue posible gracias a la inspiración y conocimientos técnicos adquiridos.
+data = []
 
-*   **Autor:** [Tu Nombre / Usuario]
-*   **Mentoría:** Un agradecimiento especial al **Profesor Jefferson Alves** por sus enseñanzas en visualización de datos y diseño de dashboards, que sirvieron de base conceptual para esta implementación web.
+# --- FECHAS ---
+start_date = datetime(2023, 1, 1)
+total_days = 365 * 3
 
----
+print("Generando estructura base...")
 
-## 📄 Licencia
+# FASE 1 – Estructura base (Anti-Huecos)
+edades_base = [25, 35, 45, 55, 65]
+for gerente in gerentes:
+    for score in range(11):
+        for edad in edades_base:
+            for sexo in lista_sexos:
+                fecha = start_date + timedelta(days=random.randint(0, total_days))
+                loc = random.choice(dr_locations)
 
-Este proyecto está bajo la Licencia **MIT**. Eres libre de usarlo, modificarlo y distribuirlo, siempre y cuando se mantenga la atribución al autor original.
+                if score >= 9: clasificacion = 'Promotor'
+                elif score >= 7: clasificacion = 'Neutro'
+                else: clasificacion = 'Detractor'
 
-```text
-MIT License
-Copyright (c) 2026 [Tu Nombre]
+                data.append([
+                    len(data) + 1, fecha, fecha.year, gerente, sexo, random.choice(planos),
+                    loc['Region'], loc['Provincia'], loc['Ciudad'], score, clasificacion,
+                    edad + random.randint(-2, 2), random.choice(temas_clientes)
+                ])
+
+print("Generando volumen positivo...")
+
+# FASE 2 – Volumen Calibrado (Promotores > 75%)
+probs = np.array([
+    0.01, 0.01, 0.01, 0.02, 0.02, 0.03, 0.04,  
+    0.02, 0.04,                                
+    0.35, 0.45                                 
+])
+probs = probs / probs.sum()
+
+for _ in range(num_records_random):
+    fecha = start_date + timedelta(days=random.randint(0, total_days))
+    loc = random.choices(dr_locations, weights=loc_weights, k=1)[0]
+    score = np.random.choice(np.arange(0, 11), p=probs)
+
+    if score >= 9: clasificacion = 'Promotor'
+    elif score >= 7: clasificacion = 'Neutro'
+    else: clasificacion = 'Detractor'
+
+    data.append([
+        len(data) + 1, fecha, fecha.year, random.choice(gerentes), random.choice(lista_sexos),
+        random.choice(planos), loc['Region'], loc['Provincia'], loc['Ciudad'], score,
+        clasificacion, random.randint(18, 75), random.choice(temas_clientes)
+    ])
+
+# --- EXPORTAR ---
+cols = [
+    'ID', 'Fecha', 'Ano', 'Gerente', 'Sexo', 'Plano', 
+    'Region', 'Estado', 'Ciudad', 
+    'NPS_Score', 'Clasificacion', 'Idade', 'Tema_Cliente'
+]
+
+df = pd.DataFrame(data, columns=cols)
+
+archivo = "nps_dataset_rd_banca_claro.xlsx"
+df.to_excel(archivo, index=False)
+print(f"✅ Archivo generado sin conflictos: {archivo}")
 ```
-
----
-*Documentación generada automáticamente con estándares de ingeniería de software.*
