@@ -1,113 +1,169 @@
-# 🦁 Dashboard Ejecutivo NPS: Banca & Telecomunicaciones (Premium UI)
+# 📊 Panel de Control NPS Interactivo (Web Edition)
 
-> **Versión:** 2.0 (High Performance Edition)  
-> **Tecnología:** Power BI + DAX + HTML5/SVG + Python  
-> **Enfoque:** Visualización de Datos Avanzada (Custom Visuals via DAX)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Status](https://img.shields.io/badge/status-stable-success)
+![Technology](https://img.shields.io/badge/tech-HTML5%20%7C%20CSS3%20%7C%20JS-orange)
 
----
-
-## 📖 1. Narrativa y Contexto del Negocio
-
-### 🏦 El Escenario
-"Banca Claro RD" es una institución líder que busca monitorear la satisfacción de sus clientes (NPS) en tiempo real. La alta dirección requiere un tablero que no solo muestre números, sino que **transmita el éxito y la excelencia** de la gestión actual.
-
-### 🚩 El Problema (Pain Point)
-Los visuales nativos de Power BI (tacómetros estándar, gráficos de barras simples) eran insuficientes para:
-1.  **Impacto Visual:** Se veían "planos" y poco corporativos.
-2.  **Flexibilidad:** No permitían zonas de colores personalizadas ni iconos dinámicos.
-3.  **Narrativa:** No contaban la historia de la demografía del cliente de un vistazo.
-
-### 🚀 La Solución
-Se desarrolló una arquitectura híbrida donde **Power BI procesa los datos** y **DAX genera código HTML/SVG dinámico**. Esto permite crear tarjetas visuales de "calidad web" (pixel-perfect) que reaccionan a los filtros, mostrando una interfaz limpia, moderna y altamente estética.
+> **Una experiencia visual intuitiva y de alto rendimiento para el análisis de NPS (Net Promoter Score), desarrollada desde cero con tecnologías web estándar.**
 
 ---
 
-## 🛠️ 2. Arquitectura de Datos (Backend)
+## 📑 Tabla de Contenidos
 
-Para simular un escenario real y garantizar que los KPIs reflejen una gestión exitosa, se generó un **Dataset Sintético Calibrado** utilizando Python.
-
-### 🐍 Generación de Datos (Python Script)
-Se creó una base de datos `nps_dataset_rd_banca_claro` con **5,000 registros** y las siguientes características:
-
-* **Periodo:** 3 años de histórico.
-* **Cobertura:** Nacional (Regiones Ozama, Cibao, Sur, Este).
-* **Segmentación:** Sexo, Rango de Edad (calculado dinámicamente), Plan, Gerente.
-* **Calibración Positiva (The "Winner" Logic):**
-    * 🟩 **Promotores (9-10):** ~78% (Mayoría absoluta).
-    * 🟨 **Neutros (7-8):** ~8% (Minimizado).
-    * 🟥 **Detractores (0-6):** ~14% (Controlado).
+1. [📖 Introducción](#-introducción)
+2. [✨ Características Principales](#-características-principales)
+3. [🛠️ Tecnologías Utilizadas](#-tecnologías-utilizadas)
+4. [📋 Prerrequisitos](#-prerrequisitos)
+5. [🚀 Instalación y Despliegue](#-instalación-y-despliegue)
+6. [💻 Estructura del Proyecto](#-estructura-del-proyecto)
+7. [🎨 Diseño y UX](#-diseño-y-ux)
+8. [🤝 Contribución](#-contribución)
+9. [👏 Créditos y Agradecimientos](#-créditos-y-agradecimientos)
+10. [📄 Licencia](#-licencia)
 
 ---
 
-## 🧠 3. Lógica de Negocio y KPIs (DAX)
+## 📖 Introducción
 
-Las medidas no son simples sumas; contienen lógica de negocio para determinar el "Color del Éxito".
+Este proyecto nace con la misión de transformar datos fríos en una narrativa visual atractiva. A diferencia de los paneles tradicionales limitados por software de BI (Business Intelligence), esta solución es una **Web App Standalone** que ofrece libertad total en diseño y performance.
 
-### 📊 Indicadores Clave (KPIs)
+El objetivo fue replicar y superar la experiencia de un dashboard ejecutivo, implementando lógicas de **ETL (simulado en JS)** y visualización de datos avanzada utilizando únicamente estándares web modernos.
 
-| Indicador | Definición | Meta / Regla de Negocio |
+---
+
+## ✨ Características Principales
+
+*   **⚡ Alto Rendimiento:** Carga instantánea y transiciones fluidas sin la sobrecarga de motores de BI pesados.
+*   **🏎️ Infografía de Velocímetro:** Visualización SVG dinámica que reacciona a los KPIs del NPS en tiempo real.
+*   **🗺️ Mapa Interactivo:** Gráficos vectoriales que permiten el desglose geográfico de la satisfacción del cliente.
+*   **👤 Perfil de Cliente Dinámico:** Tooltips y descripciones personalizadas que cambian según la selección de datos.
+*   **🎨 Background Figma-Designed:** Una interfaz de usuario pulida con fondos y activos exportados directamente desde diseños de alta fidelidad.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+Este proyecto no utiliza frameworks pesados, garantizando la máxima compatibilidad y facilidad de replicación.
+
+| Tecnología | Rol | Icono |
 | :--- | :--- | :--- |
-| **NPS Score** | `(Promotores % - Detractores %) * 100` | > 50 (Excelente) |
-| **% Promotores** | `Total Promotores / Total Respuestas` | **Si es > 70%, se fuerza el ESTADO VERDE.** |
-| **Zona de Clasificación** | Texto dinámico según el Score | Excelencia, Calidad, Mejora, Crítica. |
+| **HTML5** | Estructura semántica y accesibilidad | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="20" height="20"/> |
+| **CSS3** | Estilos, Grid/Flexbox y Animaciones | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="20" height="20"/> |
+| **JavaScript (ES6+)** | Lógica de negocio, manipulación del DOM y cálculos de NPS | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="20" height="20"/> |
+| **Figma** | Prototipado y diseño de assets gráficos | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg" width="20" height="20"/> |
+| **SVG** | Gráficos vectoriales escalables para métricas nítidas | 📐 |
 
 ---
 
-## 🎨 4. Visualización Avanzada (Frontend)
+## 📋 Prerrequisitos
 
-El corazón del reporte son dos medidas DAX complejas que renderizan HTML5 puro dentro de Power BI.
+Para ejecutar o editar este proyecto, necesitas:
 
-### 1️⃣ Tarjeta NPS (Velocímetro SVG)
-Un componente visual complejo diseñado a medida que incluye:
-
-* **Gauge Semicircular (SVG):** Dibuja un arco de 180° dinámico y nítido.
-* **Aguja Rotatoria:** Calcula el ángulo exacto basado en el NPS (Escala de -100 a 100).
-    * *Fórmula de rotación:* `INT(MAX(0, MIN(180, (_NPS + 100) * 0.9)))`
-* **Indicadores de Segmento:** Barras de progreso inferiores con iconos vectoriales (SVG path) que cambian de color según el segmento.
-* **Clean UI:** Se eliminaron botones innecesarios (como el botón "Edit") para ofrecer una vista ejecutiva limpia y centrada en el dato.
-
-### 2️⃣ Tarjeta Perfil del Cliente (Demografía)
-Un panel informativo que desglosa quién está respondiendo la encuesta:
-
-* **Iconos de Género:** Vectores SVG que cambian dinámicamente según el sexo predominante en la selección.
-* **Barras Apiladas (CSS Grid):**
-    * Muestra la distribución de edad (18-29, 30-39, etc.).
-    * Utiliza barras bicolores (Rosa/Azul Oscuro) dentro del mismo contenedor visual.
-* **Técnica Web:** Uso de `width: %` en divs HTML calculados via DAX para la longitud de las barras.
-* **Corrección de Error:** Se usa la columna numérica `[Idade]` para calcular los rangos "al vuelo" dentro de la medida, evitando errores de texto o conflictos con columnas calculadas previas.
+1.  **Navegador Web Moderno:** Chrome, Edge, Firefox o Safari (versiones recientes).
+2.  **Editor de Código (Opcional):** Se recomienda [Visual Studio Code](https://code.visualstudio.com/) para explorar el código.
+3.  **Git (Opcional):** Para clonar el repositorio.
 
 ---
 
-## 🚦 5. Zonas de Gestión (Semáforo)
+## 🚀 Instalación y Despliegue
 
-El dashboard clasifica automáticamente el desempeño del Gerente o Región en 4 zonas de actuación:
+Sigue estos pasos para tener el proyecto corriendo en tu máquina local en menos de 2 minutos.
 
-* 🏆 **Zona de Excelencia:** NPS > 75 **o** Promotores > 70%. *(Color: Verde Neón / #00E676)*.
-* ✅ **Zona de Calidad:** NPS entre 50 y 75. *(Color: Verde Medio / #00E676)*.
-* ⚠️ **Zona de Mejora:** NPS positivo pero bajo (< 50). *(Color: Amarillo-Dorado / #F4B400)*.
-* ⛔ **Zona Crítica:** NPS Negativo. *(Color: Rojo-Rosa / #E91E63)*.
+### Paso 1: Clonar u Obtener el Proyecto
+
+Si tienes Git instalado, abre tu terminal y ejecuta:
+
+```bash
+git clone https://github.com/tu-usuario/nps-dashboard-web.git
+cd nps-dashboard-web
+```
+
+*Si descargaste el archivo ZIP, simplemente extrae el contenido en una carpeta de tu preferencia.*
+
+### Paso 2: Ejecución
+
+Al ser un proyecto estático (Client-Side), no requieres instalar Node.js ni configurar servidores complejos.
+
+**Opción A (Doble Clic):**
+1.  Navega a la carpeta del proyecto.
+2.  Haz doble clic en el archivo `index.html`.
+3.  El dashboard se abrirá en tu navegador predeterminado.
+
+**Opción B (VS Code Live Server - Recomendado):**
+1.  Abre la carpeta en VS Code.
+2.  Instala la extensión "Live Server".
+3.  Haz clic derecho en `index.html` y selecciona **"Open with Live Server"**.
 
 ---
 
-## 📦 6. Instalación y Uso
+## 💻 Estructura del Proyecto
 
-### Pasos para desplegar:
-1.  **Fuente de Datos:** Cargar el archivo generado `nps_dataset_rd_banca_claro.xlsx`.
-2.  **Custom Visual:** Importar el visual **"HTML Content"** (de Daniel Marsh-Patrick) desde AppSource.
-3.  **Medidas:**
-    * Arrastrar la medida `[HTML_NPS_Card]` al lienzo para ver el velocímetro.
-    * Arrastrar la medida `[HTML_Perfil_Premium]` al lienzo para ver la demografía.
-4.  **Interacción:** Al filtrar por *Gerente*, *Año* o *Región*, ambos visuales recalculan sus vectores y colores instantáneamente.
+La organización de archivos sigue las mejores prácticas para facilitar el mantenimiento:
 
-> **Nota del Desarrollador:** Este dashboard demuestra que Power BI no tiene límites visuales si se combina correctamente con lenguajes web (HTML/CSS).
+```text
+nps-dashboard/
+│
+├── 📂 assets/              # Recursos estáticos
+│   ├── 📂 images/          # Fondos de Figma e iconos rasterizados
+│   └── 📂 svgs/            # Gráficos vectoriales (Velocímetro, Mapa)
+│
+├── 📂 css/                 # Hojas de estilo
+│   ├── style.css           # Estilos principales y reset
+│   └── responsive.css      # Media queries para adaptabilidad
+│
+├── 📂 js/                  # Lógica del cliente
+│   ├── data.js             # Datos simulados (JSON structure)
+│   ├── main.js             # Lógica principal de renderizado
+│   └── charts.js           # Lógica específica para gráficos SVG
+│
+├── index.html              # Punto de entrada de la aplicación
+├── README.md               # Documentación del proyecto
+└── LICENSE                 # Licencia de uso
+```
 
 ---
 
-## 💻 7. Repositorio de Medidas DAX (Código Fuente)
+## 🎨 Diseño y UX
 
-Aquí se detalla el código DAX utilizado para generar los visuales avanzados.
+El diseño visual fue concebido en **Figma** antes de escribir una sola línea de código.
 
-### 🔹 Medida Principal: Tarjeta NPS (HTML_NPS_Card)
-> Renderiza el velocímetro, la aguja dinámica y los KPIs inferiores.
+1.  **Fondo y Contenedores:** Se exportaron como SVGs/PNGs para mantener la fidelidad visual.
+2.  **Interactividad:**
+    *   *Hover Effects:* Al pasar el mouse sobre las regiones del mapa.
+    *   *Data Binding:* Al hacer clic en un segmento del velocímetro, la información del perfil del cliente se actualiza automáticamente.
 
-```dax
+---
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Si deseas mejorar el código o añadir nuevas visualizaciones:
+
+1.  Haz un **Fork** del proyecto.
+2.  Crea una nueva rama (`git checkout -b feature/NuevaFuncionalidad`).
+3.  Realiza tus cambios y haz **Commit** (`git commit -m 'Agrega nueva gráfica'`).
+4.  Haz **Push** a la rama (`git push origin feature/NuevaFuncionalidad`).
+5.  Abre un **Pull Request**.
+
+---
+
+## 👏 Créditos y Agradecimientos
+
+Este proyecto fue posible gracias a la inspiración y conocimientos técnicos adquiridos.
+
+*   **Autor:** [Tu Nombre / Usuario]
+*   **Mentoría:** Un agradecimiento especial al **Profesor Jefferson Alves** por sus enseñanzas en visualización de datos y diseño de dashboards, que sirvieron de base conceptual para esta implementación web.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia **MIT**. Eres libre de usarlo, modificarlo y distribuirlo, siempre y cuando se mantenga la atribución al autor original.
+
+```text
+MIT License
+Copyright (c) 2026 [Tu Nombre]
+```
+
+---
+*Documentación generada automáticamente con estándares de ingeniería de software.*
