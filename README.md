@@ -100,3 +100,14 @@ El dashboard clasifica automáticamente el desempeño del Gerente o Región en 4
 4.  **Interacción:** Al filtrar por *Gerente*, *Año* o *Región*, ambos visuales recalculan sus vectores y colores instantáneamente.
 
 > **Nota del Desarrollador:** Este dashboard demuestra que Power BI no tiene límites visuales si se combina correctamente con lenguajes web (HTML/CSS).
+
+---
+
+## 💻 7. Repositorio de Medidas DAX (Código Fuente)
+
+Aquí se detalla el código DAX utilizado para generar los visuales avanzados.
+
+### 🔹 Medida Principal: Tarjeta NPS (HTML_NPS_Card)
+> Renderiza el velocímetro, la aguja dinámica y los KPIs inferiores.
+
+```dax
