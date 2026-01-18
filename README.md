@@ -10,7 +10,7 @@
 
 ## Presetancion:
 
-![Portada](portada.png)
+![Portada](pbix_portada1.jpeg)
 
 
 
@@ -1274,6 +1274,10 @@ print(f"✅ Archivo generado sin conflictos: {archivo}")
 [⬆ Volver al Menú](#tabla-de-contenido-menú)
 
 ---
+
+## Presetancion:
+
+![Portada](pbix_portada2.jpeg)
 
 ## 9. Conclusiones y Contacto
 
