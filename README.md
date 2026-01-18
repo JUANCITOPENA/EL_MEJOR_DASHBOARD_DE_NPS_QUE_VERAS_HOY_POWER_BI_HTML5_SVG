@@ -7,6 +7,13 @@
 
 ---
 
+
+## Presetancion:
+
+![Portada](portada.png)
+
+
+
 ## 📑 Tabla de Contenido (Menú)
 
 1.  [Narrativa y Contexto del Negocio](#-1-narrativa-y-contexto-del-negocio)
