@@ -37,8 +37,67 @@
 
 ## 📖 1. Narrativa y Contexto del Negocio
 
-### 🏦 El Escenario
-**"Banca Claro RD"** es una institución líder que busca monitorear la satisfacción de sus clientes (NPS) en tiempo real. La alta dirección requiere un tablero que no solo muestre números, sino que **transmita el éxito y la excelencia** de la gestión actual.
+# 📊 Proyecto de Controles Visuales Personalizados en Power BI
+
+Hola mis amigos, hoy quiero presentarles este mini proyecto en el cual he estado trabajando.  
+Es un **caso de uso de controles visuales para Power BI**, personalizados y creados con **HTML, CSS, JS y tecnologías web**, utilizando el control **HTML Content de la tienda oficial**.  
+Con este enfoque es posible construir **objetos visuales optimizados y personalizados**, adaptados a cualquier necesidad corporativa, logrando un diseño **pixel-perfect** que transmite profesionalismo y modernidad.
+
+---
+
+## 🎭 Simulación del Caso de Uso
+
+Este proyecto es **una simulación para la empresa Claro Dominicana**, utilizando **datos ficticios**.  
+Para ello se creó un **script en Python** que genera un archivo Excel con una serie de campos y registros simulados.  
+Estos datos permiten realizar pruebas con los visuales personalizados y validar cómo reaccionan ante filtros, segmentaciones y narrativas de negocio.  
+El objetivo es mostrar cómo se pueden integrar quejas de clientes, servicios contratados y métricas de satisfacción (NPS) en un tablero corporativo con alto impacto visual.
+
+---
+
+## 📖 1. Narrativa y Contexto del Negocio
+
+### 🏦 El Escenario  
+**Claro Dominicana** es una empresa líder en telecomunicaciones y servicios digitales que busca monitorear en tiempo real la **satisfacción de sus clientes (NPS)**.  
+La alta dirección requiere un tablero que no solo muestre métricas, sino que **refleje la excelencia en la atención y la capacidad de respuesta ante quejas y solicitudes de servicio**.  
+
+### 🚩 El Problema (Pain Point)  
+Los visuales nativos de Power BI (tacómetros estándar, gráficos de barras simples) resultaban insuficientes para:  
+1. **Impacto Visual:** Se percibían planos y poco alineados con la identidad corporativa.  
+2. **Flexibilidad:** No permitían personalizar zonas de colores ni incorporar íconos dinámicos que representaran estados de servicio.  
+3. **Narrativa:** No lograban contar la historia completa de la experiencia del cliente, incluyendo quejas, servicios contratados y niveles de satisfacción.  
+
+### 🚀 La Solución  
+Se diseñó una arquitectura híbrida donde **Power BI procesa los datos operativos y de satisfacción**, mientras que **DAX genera código HTML/SVG dinámico**.  
+Esto permitió construir tarjetas visuales de **calidad web (pixel-perfect)** que reaccionan a los filtros en tiempo real, mostrando una interfaz moderna, limpia y altamente estética.  
+
+El tablero ahora integra:  
+- **Indicadores de NPS** con zonas de clasificación personalizadas.  
+- **Visualización de quejas y servicios** en un formato narrativo que facilita la toma de decisiones.  
+- **Diseño corporativo** que transmite confianza, innovación y excelencia en la gestión de clientes.  
+
+---
+
+## 🧪 Datos Simulados
+
+El script en Python genera un archivo Excel con:  
+- **Clientes simulados** con ID, nombre y segmento.  
+- **Servicios contratados** (telefonía, internet, TV).  
+- **Quejas registradas** con fecha, tipo y estado.  
+- **Valoración NPS** aleatoria para cada cliente.  
+
+Estos datos ficticios permiten validar los visuales y comprobar cómo se comportan en un escenario realista.  
+
+---
+
+## 📊 Visuales Personalizados
+
+Los visuales creados con **HTML, CSS y JS** permiten:  
+- Mostrar **zonas de clasificación NPS** con colores corporativos.  
+- Incluir **íconos dinámicos** que cambian según el estado del cliente.  
+- Generar **tarjetas narrativas** que cuentan la historia de la satisfacción y las quejas de manera clara y atractiva.  
+
+---
+
 
 ### 🚩 El Problema (Pain Point)
 Los visuales nativos de Power BI (tacómetros estándar, gráficos de barras simples) eran insuficientes para:
