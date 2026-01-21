@@ -10,7 +10,7 @@
 
 ## Presetancion:
 
-![Portada](pbix_portada1.jpeg)
+![Portada](pbix_portada2.jpeg)
 
 
 
